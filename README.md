@@ -9,6 +9,22 @@ You need to have the following:
 * [pip](https://pypi.org/project/pip/) (obviously compatible with Python 3.6)
 * [Virtualenv](https://virtualenv.pypa.io/en/stable/)
 
+# Virtualenv
+
+Start your virtual env:
+
+## First time
+
+```bash
+virtualenv --python=python3 -q .venv
+```
+
+## Activating
+
+```bash
+. .venv/bin/activate
+```
+
 # Makefile
 
 Or _WTF do I do with that f%$#ing Makefile?_ section.
