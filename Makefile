@@ -18,6 +18,7 @@ default: check-coding-style
 
 venv:
 	test -d $(VENV) || $(VIRTUALENV) -p $(DEFAULT_PYTHON) -q $(VENV)
+	. $(VENV)/bin/activate
 
 requirements:
 	@if [ -d wheelhouse ]; then \
