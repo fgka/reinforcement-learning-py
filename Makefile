@@ -1,6 +1,6 @@
 # vim: noai:ts=4:sw=4:noet
 PYTHON_MODULES := reinforcement_learning
-PYTHON_TEST := tests
+PYTHON_TESTS := tests
 PYTHONPATH := .
 VENV := .venv
 PYTEST := env PYTHONPATH=$(PYTHONPATH) PYTEST=1 $(VENV)/bin/py.test
@@ -41,5 +41,11 @@ test: check-coding-style
 check:
 	$(PYTEST) $(PYTHON_MODULES)
 
-.PHONY: default venv requirements bootstrap check-coding-style pylint-full test check
+clean:
+	rm -f MANIFEST
+	rm -rf build dist
+	find $(PYTHON_MODULES) -type d -name "__pycache__" -exec rm -rf {} \;
+	find $(PYTHON_TESTS) -type d -name "__pycache__" -exec rm -rf {} \;
+
+.PHONY: default venv requirements bootstrap check-coding-style pylint-full test check clean
 
