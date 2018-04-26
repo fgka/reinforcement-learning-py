@@ -3,6 +3,8 @@ PYTHON_MODULES := reinforcement_learning
 PYTHON_TESTS := tests
 PYTHONPATH := .
 VENV := .venv
+VENV_ON := $(VENV)/bin/activate
+VENV_OFF := deactivate
 PYTEST := env PYTHONPATH=$(PYTHONPATH) PYTEST=1 $(VENV)/bin/py.test
 PYLINT := env PYTHONPATH=$(PYTHONPATH) $(VENV)/bin/pylint --disable=I0011 --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}"
 PEP8 := env PYTHONPATH=$(PYTHONPATH) $(VENV)/bin/pycodestyle --repeat --ignore=E202,E501,E402
@@ -18,7 +20,7 @@ default: check-coding-style
 
 venv:
 	test -d $(VENV) || $(VIRTUALENV) -p $(DEFAULT_PYTHON) -q $(VENV)
-	. $(VENV)/bin/activate
+	. $(VENV_ON)
 
 requirements:
 	@if [ -d wheelhouse ]; then \

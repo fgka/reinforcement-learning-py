@@ -14,6 +14,14 @@ You need to have the following:
 If you use the `Makefile` it will always set your environment to use `virtualenv`.
 You can always get out of your virtualenv by issuing `deactivate`.
 
+## Activate
+
+This is only necessary if are doing things outside the `Makefile`, like adding a new dependency.
+
+```bash
+. .venv/bin/activate
+```
+
 # Makefile
 
 Or _WTF do I do with that f%$#ing Makefile?_ section.
