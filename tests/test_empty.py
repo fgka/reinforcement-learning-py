@@ -5,4 +5,4 @@
 Empty test
 """
 def test_ok():
-    assert true
+    assert True

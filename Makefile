@@ -1,5 +1,6 @@
 # vim: noai:ts=4:sw=4:noet
 PYTHON_MODULES := reinforcement_learning
+PYTHON_TEST := tests
 PYTHONPATH := .
 VENV := .venv
 PYTEST := env PYTHONPATH=$(PYTHONPATH) PYTEST=1 $(VENV)/bin/py.test
@@ -35,7 +36,7 @@ pylint-full: check-coding-style
 	$(PYLINT) $(PYTHON_MODULES)
 
 test: check-coding-style
-	$(PYTEST) $(PYTHON_MODULES)
+	$(PYTEST) $(PYTHON_TESTS)
 
 check:
 	$(PYTEST) $(PYTHON_MODULES)
