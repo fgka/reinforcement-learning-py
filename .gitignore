@@ -1,5 +1,6 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+.pytest_cache/
 *.py[cod]
 *$py.class
 
@@ -44,6 +45,7 @@ nosetests.xml
 coverage.xml
 *,cover
 .hypothesis/
+.pytest_cache/
 
 # Translations
 *.mo
@@ -82,3 +84,6 @@ celerybeat-schedule
 .venv/
 venv/
 ENV/
+
+# IDE specific
+*.swp

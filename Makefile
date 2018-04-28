@@ -27,8 +27,8 @@ ifndef PYTHON_PATH
 endif
 
 venv: python_exists
-	test -d $(VENV) || $(VIRTUALENV) -p $(DEFAULT_PYTHON) -q $(VENV)
-	. $(VENV_ON)
+	@test -d $(VENV) || $(VIRTUALENV) -p $(DEFAULT_PYTHON) -q $(VENV)
+	@. $(VENV_ON)
 
 requirements: python_exists
 	@if [ -d wheelhouse ]; then \
@@ -40,23 +40,23 @@ requirements: python_exists
 bootstrap: venv requirements
 
 check-coding-style: bootstrap
-	$(PEP8) $(PYTHON_MODULES)
-	$(PYLINT) -E $(PYTHON_MODULES)
+	@$(PEP8) $(PYTHON_MODULES)
+	@$(PYLINT) -E $(PYTHON_MODULES)
 
 pylint-full: check-coding-style
-	$(PYLINT) $(PYTHON_MODULES)
+	@$(PYLINT) $(PYTHON_MODULES)
 
 test: check-coding-style
-	$(PYTEST) $(PYTHON_TESTS)
+	@$(PYTEST) $(PYTHON_TESTS)
 
 check: python_exists
-	$(PYTEST) $(PYTHON_MODULES)
+	@$(PYTEST) $(PYTHON_MODULES)
 
 clean:
-	rm -f MANIFEST
-	rm -rf build dist
-	find $(PYTHON_MODULES) -type d -name "__pycache__" -exec rm -rf {} \;
-	find $(PYTHON_TESTS) -type d -name "__pycache__" -exec rm -rf {} \;
+	@rm -f MANIFEST
+	@rm -rf build dist
+	@find $(PYTHON_MODULES) -type d -name "__pycache__" -exec rm -rf {} \;
+	@find $(PYTHON_TESTS) -type d -name "__pycache__" -exec rm -rf {} \;
 
 .PHONY: python_exists default venv requirements bootstrap check-coding-style pylint-full test check clean
 
