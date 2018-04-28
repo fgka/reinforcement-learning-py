@@ -9,6 +9,14 @@ You need to have the following:
 * [pip](https://pypi.org/project/pip/) (obviously compatible with Python 3.6)
 * [Virtualenv](https://virtualenv.pypa.io/en/stable/)
 
+## (Optional) Add the git `pre-commit` hook
+
+The hook is basically to require that all tests pass before accepting your commit.
+
+```bash
+cp git_hooks_pre-commit .git/hooks/pre-commit
+```
+
 # Virtualenv
 
 If you use the `Makefile` it will always set your environment to use `virtualenv`.
