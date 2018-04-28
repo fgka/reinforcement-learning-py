@@ -40,7 +40,8 @@ make test
 ## Notes
 
 The `Makefile` is `virtualenv`ed, this means that it will always use `virtualenv`.
+
 To the nitty-gritty:
-* Check if there is already a virtualenv, at `.venv`, and if not create it.
+* Check if there is already a virtualenv, at `.venv` and, if not, create it.
 * Activate the virtualenv
 * Execute whatever you want, like build or test
