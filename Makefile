@@ -2,6 +2,7 @@
 PYTHON_MODULES := reinforcement_learning
 PYTHON_TESTS := tests
 PYTHONPATH := .
+PYTHON_VERSION := 3.6
 VENV := .venv
 VENV_ON := $(VENV)/bin/activate
 VENV_OFF := deactivate
@@ -11,18 +12,25 @@ PEP8 := env PYTHONPATH=$(PYTHONPATH) $(VENV)/bin/pycodestyle --repeat --ignore=E
 PYTHON := env PYTHONPATH=$(PYTHONPATH) $(VENV)/bin/python
 PIP := $(VENV)/bin/pip
 
-DEFAULT_PYTHON := /usr/bin/python3
+DEFAULT_PYTHON := python$(PYTHON_VERSION)
+PYTHON_PATH := $(shell which $(DEFAULT_PYTHON))
+
 VIRTUALENV := /usr/local/bin/virtualenv
 
 REQUIREMENTS := -r requirements.txt
 
 default: check-coding-style
 
-venv:
+python_exists:
+ifndef PYTHON_PATH
+	$(error Could not find $(DEFAULT_PYTHON) in your search path PATH=$(PATH))
+endif
+
+venv: python_exists
 	test -d $(VENV) || $(VIRTUALENV) -p $(DEFAULT_PYTHON) -q $(VENV)
 	. $(VENV_ON)
 
-requirements:
+requirements: python_exists
 	@if [ -d wheelhouse ]; then \
 		$(PIP) install -q --no-index --find-links=wheelhouse $(REQUIREMENTS); \
 	else \
@@ -41,7 +49,7 @@ pylint-full: check-coding-style
 test: check-coding-style
 	$(PYTEST) $(PYTHON_TESTS)
 
-check:
+check: python_exists
 	$(PYTEST) $(PYTHON_MODULES)
 
 clean:
@@ -50,5 +58,5 @@ clean:
 	find $(PYTHON_MODULES) -type d -name "__pycache__" -exec rm -rf {} \;
 	find $(PYTHON_TESTS) -type d -name "__pycache__" -exec rm -rf {} \;
 
-.PHONY: default venv requirements bootstrap check-coding-style pylint-full test check clean
+.PHONY: python_exists default venv requirements bootstrap check-coding-style pylint-full test check clean
 
