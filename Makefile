@@ -19,7 +19,7 @@ VIRTUALENV := /usr/local/bin/virtualenv
 
 REQUIREMENTS := -r requirements.txt
 
-default: check-coding-style
+default: test pylint-full
 
 python_exists:
 ifndef PYTHON_PATH
