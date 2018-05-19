@@ -45,6 +45,21 @@ make
 make test
 ```
 
+## Debugging Test
+
+You can use you preferred tool, I like [pudb](https://pypi.org/project/pudb/) with [pytest-pudb](https://pypi.org/project/pytest-pudb/).
+To invoke `pudb` for your test:
+
+```bash
+PYTHONPATH="." py.test --pudb tests/<test file>
+```
+
+Example:
+
+```bash
+PYTHONPATH="." py.test --pudb tests/test_dict_qtable.py
+```
+
 ## Notes
 
 The `Makefile` is `virtualenv`ed, this means that it will always use `virtualenv`.
