@@ -27,6 +27,12 @@ class QTable(metaclass=ABCMeta):
             result = stored.get(action, DEFAULT_VALUE)
         return result
 
+    @abstractmethod
+    def set_value(self, state: QState, action: QAction, value: float) -> None:
+        QState.assert_is_of_type(state)
+        QAction.assert_is_of_type(action)
+        return None
+
     def get_best_value(self, state: QState) -> float:
         QState.assert_is_of_type(state)
         result = DEFAULT_VALUE
@@ -60,3 +66,19 @@ class QTable(metaclass=ABCMeta):
     def get_stored_action_values(self, state: QState) -> dict:
         QState.assert_is_of_type(state)
         return None
+
+    @abstractmethod
+    def get_all_stored_states(self) -> list:
+        return None
+
+    def __str__(self):
+        return '\n'.join([
+            '{}->[{}]'.format(
+                state,
+                ' '.join([
+                    '{}:{}'.format(action, value)
+                    for action, value in
+                    self.get_stored_action_values(state).items()
+                ]))
+            for state in self.get_all_stored_states()
+        ])
