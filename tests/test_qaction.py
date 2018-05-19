@@ -3,6 +3,8 @@
 # coding=utf-8
 
 import pytest
+# Uncomment to run test in debug mode
+# import pudb; pudb.set_trace()
 from pytest import raises
 from reinforcement_learning.qaction import QAction
 
@@ -40,7 +42,11 @@ def test_assert_is_of_type_fail():
 
 def test_assert_is_of_type_ok():
     try:
-        QAction.assert_is_of_type(QActionTest(""))
+        # given
+        action = QActionTest("")
+        # when
+        QAction.assert_is_of_type(action)
+        # then
         assert True
     except Exception as e:
         assert False, "Should not raise an exception, but got: {}".format(e)
@@ -49,32 +55,42 @@ def test_assert_is_of_type_ok():
 @pytest.mark.incremental
 class TestQAction(object):
 
+    # given
     obj_a = QActionTest(1)
     obj_b = QActionTest(2)
     obj_c = QActionTest(1)
 
     def test__eq_ne___(self):
+        # when
+        # then
         assert self.obj_a == self.obj_a
         assert self.obj_a != self.obj_b
         assert self.obj_a == self.obj_c
 
     def test___lt_gt__(self):
+        # when
+        # then
         assert self.obj_a < self.obj_b
         assert self.obj_b > self.obj_a
 
     def test___le_ge__(self):
+        # when
+        # then
         assert self.obj_a <= self.obj_a
         assert self.obj_a >= self.obj_a
         assert self.obj_a <= self.obj_b
         assert self.obj_b >= self.obj_a
 
     def test_hash_code(self):
+        # given
         qa_to_str = {}
         qa_to_str[self.obj_a] = "obj_a"
         qa_to_str[self.obj_b] = "obj_b"
+        # when
         assert 2 == len(qa_to_str)
         assert "obj_a" == qa_to_str[self.obj_a]
         # obj_a and obj_c are semantically equivalent and have same hash
         qa_to_str[self.obj_c] = "obj_c"
+        # then
         assert 2 == len(qa_to_str)
         assert "obj_c" == qa_to_str[self.obj_a]

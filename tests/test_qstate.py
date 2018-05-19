@@ -3,6 +3,8 @@
 # coding=utf-8
 
 import pytest
+# Uncomment to run test in debug mode
+# import pudb; pudb.set_trace()
 from pytest import raises
 from reinforcement_learning.qstate import QState
 from test_qaction import QActionTest
@@ -41,7 +43,11 @@ def test_assert_is_of_type_fail():
 
 def test_assert_is_of_type_ok():
     try:
-        QState.assert_is_of_type(QStateTest([]))
+        # given
+        state = QStateTest([])
+        # when
+        QState.assert_is_of_type(state)
+        # then
         assert True
     except Exception as e:
         assert False, "Should not raise an exception, but got: {}".format(e)
@@ -50,6 +56,7 @@ def test_assert_is_of_type_ok():
 @pytest.mark.incremental
 class TestQState(object):
 
+    # given
     action_a = QActionTest(1)
     action_b = QActionTest(2)
     action_c = QActionTest(3)
@@ -58,16 +65,20 @@ class TestQState(object):
     state_c = QStateTest([action_a, action_b])
 
     def test__eq_ne__(self):
+        # then
         assert self.state_a == self.state_a
         assert self.state_a != self.state_b
 
     def test_hash_code(self):
+        # given
         qa_to_str = {}
         qa_to_str[self.state_a] = "state_a"
         qa_to_str[self.state_b] = "state_b"
         assert 2 == len(qa_to_str)
         assert "state_a" == qa_to_str[self.state_a]
+        # when
         # state_a and state_c are semantically equivalent and have same hash
         qa_to_str[self.state_c] = "state_c"
+        # then
         assert 2 == len(qa_to_str)
         assert "state_c" == qa_to_str[self.state_a]
