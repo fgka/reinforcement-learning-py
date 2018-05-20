@@ -45,6 +45,11 @@ make
 make test
 ```
 
+## Documentation
+```bash
+make doc
+```
+
 ## Debugging Test
 
 You can use you preferred tool, I like [pudb](https://pypi.org/project/pudb/) with [pytest-pudb](https://pypi.org/project/pytest-pudb/).
