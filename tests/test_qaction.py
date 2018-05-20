@@ -19,9 +19,6 @@ class QActionTest(QAction):
     def __init__(self, content: int):
         self.content = content
 
-    def get_available_actions(self):
-        return list()
-
     def hash_code(self):
         return self.content.__hash__()
 
