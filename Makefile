@@ -55,8 +55,8 @@ check: python_exists
 clean:
 	@rm -f MANIFEST
 	@rm -rf build dist
-	@find $(PYTHON_MODULES) -type d -name "__pycache__" -exec rm -rf {} \;
-	@find $(PYTHON_TESTS) -type d -name "__pycache__" -exec rm -rf {} \;
+	@find $(PYTHON_MODULES) -type d -name "__pycache__" -exec rm -rf {} \; > /dev/null 2>&1
+	@find $(PYTHON_TESTS) -type d -name "__pycache__" -exec rm -rf {} \; > /dev/null 2>&1
 
 .PHONY: python_exists default venv requirements bootstrap check-coding-style pylint-full test check clean
 
