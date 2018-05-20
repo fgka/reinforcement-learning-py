@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # vim: ai:sw=4:ts=4:sta:et:fo=croql
 # coding=utf-8
+""" .. py:currentmodule::dict_qtable
+
+Definition of :py:class:`DictQTable.
+"""
 
 from .qaction import QAction
 from .qstate import QState
@@ -8,6 +12,9 @@ from .qtable import QTable
 
 
 class DictQTable(QTable):
+    """Implements :py:class:`QTable` where the underlying persistency layer \
+        is a `dict`.
+    """
 
     def __init__(self):
         super().__init__()
@@ -16,7 +23,7 @@ class DictQTable(QTable):
     def set_value(self, state: QState, action: QAction, value: float) -> None:
         super().set_value(state, action, value)
         action_value = self._table.get(state, None)
-        if (action_value is None):
+        if action_value is None:
             action_value = {}
             self._table[state] = action_value
         action_value[action] = value
@@ -26,9 +33,9 @@ class DictQTable(QTable):
         super().get_stored_action_values(state)
         result = {}
         action_value = self._table.get(state, None)
-        if (action_value):
+        if action_value:
             result = dict(action_value)
         return result
 
     def get_all_stored_states(self) -> list:
-        return [k for k in self._table.keys()]
+        return [k for k in self._table]
