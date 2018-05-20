@@ -16,3 +16,14 @@ def test_ok():
     # when
     # then
     assert True
+
+@pytest.mark.incremental
+class TestEmpty(object):
+
+    # given
+    value = True
+
+    def test_ok(self):
+        # when
+        # then
+        assert self.value
