@@ -57,6 +57,7 @@ class QAction(metaclass=ABCMeta):
         * ``=0`` if :py:class:`QAction` instances are semantically equivalent
         * ``<0`` if this instance should come **before** the argument ``other``
         * ``>0`` if this instance should come **after** the argument ``other``
+
         :param object other: instance of :py:class:`QAction` to compare to
         :return: a ``Comparator`` equivalent value
         :rtype: int

@@ -16,7 +16,7 @@ DEFAULT_VALUE = 0.0
 
 class QTable(metaclass=ABCMeta):
     """QTable stores the learned *action* :py:class:`QAction` values \
-        for a particular *state8 :py:class:`QState`.
+        for a particular *state* :py:class:`QState`.
     """
 
     @classmethod

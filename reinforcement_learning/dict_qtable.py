@@ -3,7 +3,7 @@
 # coding=utf-8
 """ .. py:currentmodule::dict_qtable
 
-Definition of :py:class:`DictQTable.
+Definition of :py:class:`DictQTable`.
 """
 
 from .qaction import QAction
