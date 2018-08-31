@@ -22,6 +22,14 @@ cp git_hooks_pre-commit .git/hooks/pre-commit
 If you use the `Makefile` it will always set your environment to use `virtualenv`.
 You can always get out of your virtualenv by issuing `deactivate`.
 
+## Install for the first time
+
+You will need to create the `virtualenv` structure before you go.
+
+```bash
+virtualenv --python=python3.6 .venv
+```
+
 ## Activate
 
 This is only necessary if are doing things outside the `Makefile`, like adding a new dependency.
@@ -52,7 +60,7 @@ make doc
 
 ## Debugging Test
 
-You can use you preferred tool, I like [pudb](https://pypi.org/project/pudb/) with [pytest-pudb](https://pypi.org/project/pytest-pudb/).
+You can use your preferred tool, I like [pudb](https://pypi.org/project/pudb/) with [pytest-pudb](https://pypi.org/project/pytest-pudb/).
 To invoke `pudb` for your test:
 
 ```bash
